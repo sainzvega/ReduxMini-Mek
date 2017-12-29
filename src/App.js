@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Header } from "semantic-ui-react";
-import TabContainer from "./features/tabs/TabContainer";
+import TabBarContainer from "./features/tabs/TabBarContainer";
 import "./App.css";
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
           </Header>
         </div>
         <Container>
-          <TabContainer tabs={tabs} size="massive" />
+          <TabBarContainer tabs={tabs} size="massive" />
         </Container>
       </div>
     );
