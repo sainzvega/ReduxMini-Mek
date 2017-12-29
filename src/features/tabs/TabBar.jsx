@@ -28,3 +28,5 @@ const TabBar = props => {
     </div>
   );
 };
+
+export default TabBar;
