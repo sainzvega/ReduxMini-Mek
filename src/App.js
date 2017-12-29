@@ -5,12 +5,17 @@ import "./App.css";
 
 class App extends Component {
   render() {
+    const UnitInfo = () => <div>Unit Info content</div>;
+    const Pilots = () => <div>Pilots content</div>;
+    const Mechs = () => <div>Mechs content</div>;
+    const UnitOrganization = () => <div>Unit Organization content</div>;
+
     const tabs = [
-      { name: "unitInfo", label: "Unit Info" },
-      { name: "pilots", label: "Pilots" },
-      { name: "mechs", label: "Mechs" },
-      { name: "unitOrganization", label: "Unit Organization" }
-    ];
+      { name: "unitInfo", label: "Unit Info", component: UnitInfo },
+      { name: "pilots", label: "Pilots", component: Pilots },
+      { name: "mechs", label: "Mechs", component: Mechs },
+      { name: "unitOrganization", label: "Unit Organization", component: UnitOrganization}
+    ];    
 
     return (
       <div className="App">
