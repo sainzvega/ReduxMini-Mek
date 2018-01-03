@@ -1,9 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Table } from "semantic-ui-react";
-
 import { getWeightClass } from "../mechsSelectors";
+import _ from "lodash";
+import orm from "app/orm";
 
-const MechsListRow = ({ mech, onMechClicked, selected }) => {
+const mapState = (state, ownProps) => {
+  const session = orm.session(state.entities);
+  const { Mech } = session;
+
+  let mech;
+
+  if (Mech.hasId(ownProps.mechID)) {
+    const mechModel = Mech.withId(ownProps.mechID);
+
+    mech = {
+      ...mechModel.ref,
+      mechType: {}
+    };
+
+    if (mechModel.type) {
+      mech.mechType = { ...mechModel.type.ref };
+    }
+  }
+
+  return { mech };
+};
+
+const MechsListRow = ({ mech, onMechClicked=_.noop, selected }) => {
   const { id = null, type = "", mechType = {} } = mech;
 
   const { name = "", weight = "" } = mechType;
@@ -21,4 +45,4 @@ const MechsListRow = ({ mech, onMechClicked, selected }) => {
   );
 };
 
-export default MechsListRow;
+export default connect(mapState)(MechsListRow);
